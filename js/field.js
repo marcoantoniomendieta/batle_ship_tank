@@ -3,25 +3,32 @@ var Field = function(){
 	// Constructor code
 	this.size = 8; // Optional
 	this.numShips = 1; // Optional
-	this._field = [];
+	this._field = new Array();
 	this._ships = [];
 	
 	// Defintion of class method
 	this._initField = function() {
 		for (var i = 0; i < this.size; i++) {
-			this._field[i] = '0';
-		}
+			this._field[i] = new Array();
+			for (var j = 0; j < this.size; j++){
+				this._field[i][j]= '0';
+			};
+		};
 	};
 	this.drawn = function() {
-		console.log('TEST: ', this._field.join('-'));
-		console.log('PLAYER: ', this._field.join('-').replace(/1/g, '0'));
+		for (var i = 0; i < this.size; i++) {
+			console.log('TEST: ', this._field[i].join('-'));
+		};
+		for (var j = 0; j < this.size; j++) {
+			console.log('PLAYER: ', this._field[j].join('-').replace(/1/g, '0'));
+		};
 	};
 	
 	this._drawShip = function(ship){
 		var initPos = parseInt(Math.random() * (this.size - ship.size));
 		
 		for (var i = initPos; i < (initPos + ship.size); i++) {
-			this._field[i] = ship.id;
+			this._field[0][i] = ship.id;
 		}
 	};
 	
@@ -36,15 +43,15 @@ var Field = function(){
 	
 	this.evalShot = function(pos) {
 	
-		var val = this._field[pos];
+		var val = this._field[0][pos];
 		if (val != '0') {
 			var ship = this._ships[val];
 			ship.getShot();
-			this._field[pos] = 'H';
+			this._field[0][pos] = 'H';
 			console.log(ship.status);
 		}
 		else {
-			this._field[pos] = 'F';
+			this._field[0][pos] = 'F';
 			console.log('FAIL');
 		}
 		this.drawn();

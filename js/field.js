@@ -17,19 +17,20 @@ var Field = function(){
 	};
 	this.drawn = function() {
 		for (var i = 0; i < this.size; i++) {
-			console.log('TEST: ', this._field[i].join('-'));
+			console.log('TEST: ', this._field[i].join('-'), i);
 		};
 		for (var j = 0; j < this.size; j++) {
-			console.log('PLAYER: ', this._field[j].join('-').replace(/1/g, '0'));
+			console.log('PLAYER: ', this._field[j].join('-').replace(/1/g, '0'), j);
 		};
 	};
 	
 	this._drawShip = function(ship){
-		var initPos = parseInt(Math.random() * (this.size - ship.size));
+		var initPosx = parseInt(Math.random() * (this.size - ship.size));
+		var initPosy = parseInt(Math.random() * (this.size - ship.size));
 		
-		for (var i = initPos; i < (initPos + ship.size); i++) {
-			this._field[0][i] = ship.id;
-		}
+		for (var i = initPosx; i < (initPosx + ship.size); i++) {
+			this._field[initPosy][i] = ship.id;
+		};
 	};
 	
 	this._initShips = function() {

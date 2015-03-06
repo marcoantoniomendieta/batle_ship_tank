@@ -1,8 +1,8 @@
 // Field class
-var Field = function(){
+var Field = function(size, numShips){
 	// Constructor code
-	this.size = 8; // Optional
-	this.numShips = 1; // Optional
+	this.size = size; // Optional
+	this.numShips = numShips; // Optional
 	this._field = new Array();
 	this._ships = [];
 	

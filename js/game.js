@@ -10,9 +10,10 @@ var Game = function(){
 		do {
 			var limit = player.field.size - 1;
 			// var shot = new Shot(window.prompt('Shot? [0 - ' + limit + ']'));
-			var shot = Number(window.prompt('Shot? [0 - ' + limit + ']'));
+			var line = Number(window.prompt('Enter the position of the line [0 - ' + limit + ']'));
+			var column = Number(window.prompt('Enter the position of the column [0 - ' + limit + ']'));
 			
-			player.field.evalShot(shot);
+			player.field.evalShot(line,column);
 			
 		//} while(this.players[0].status == 'LOOSER');
 		} while(player.isLooser());

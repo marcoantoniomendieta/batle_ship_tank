@@ -16,6 +16,7 @@ var Field = function(){
 		};
 	};
 	this.drawn = function() {
+		console.log('Column:0-1-2-3-4-5-6-7 Line:');
 		for (var i = 0; i < this.size; i++) {
 			console.log('TEST: ', this._field[i].join('-'), i);
 		};
@@ -42,17 +43,17 @@ var Field = function(){
 	};
 	
 	
-	this.evalShot = function(pos) {
+	this.evalShot = function(line,column) {
 	
-		var val = this._field[0][pos];
+		var val = this._field[line][column];
 		if (val != '0') {
 			var ship = this._ships[val];
 			ship.getShot();
-			this._field[0][pos] = 'H';
+			this._field[line][column] = 'H';
 			console.log(ship.status);
 		}
 		else {
-			this._field[0][pos] = 'F';
+			this._field[line][column] = 'F';
 			console.log('FAIL');
 		}
 		this.drawn();
